@@ -1,0 +1,31 @@
+﻿@page
+@model UIKT.Pages.MainWindowModel
+@{
+    ViewData["Title"] = "Prijava podjetja";
+}
+
+<div class="text-center">
+    <h4>Vnesite podatke</h4>
+    <form>
+        <label for="fname">Ime:</label>
+        <input type="text" id="fname" name="fname" /><br /><br />
+
+        <label for="fpass">Priimek:</label>
+        <input type="password" id="fpass" name="fpass" /><br /><br />
+
+        <label for="femso">EMŠO:</label>
+        <input type="text" id="femso" name="femso" /><br /><br />
+
+        <label for="fdst">Davčna številka:</label>
+        <input type="text" id="fdst" name="fdst" /><br /><br />
+
+        <label for="fiban">IBAN:</label>
+        <input type="text" id="fiban" name="fiban" /><br /><br />
+
+        <label for="fnaziv">Naziv podjetja:</label>
+        <input type="text" id="fnaziv" name="fnaziv" /><br /><br />
+
+        <label for="fopis">Opis podjetja:</label>
+        <input type="text" id="fopis" name="fopis" /><br /><br />
+    </form>
+</div>
