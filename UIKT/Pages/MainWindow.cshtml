@@ -6,26 +6,28 @@
 
 <div class="text-center">
     <h4>Vnesite podatke</h4>
-    <form>
+    <form method="post">
         <label for="fname">Ime:</label>
-        <input type="text" id="fname" name="fname" /><br /><br />
+        <input type="text" id="fname" name="fname" required/><br /><br />
 
         <label for="fpass">Priimek:</label>
-        <input type="password" id="fpass" name="fpass" /><br /><br />
+        <input type="text" id="fpass" name="fpass" required /><br /><br />
 
         <label for="femso">EMŠO:</label>
-        <input type="text" id="femso" name="femso" /><br /><br />
+        <input type="text" id="femso" name="femso" pattern="[0-9]{13}" required /><br /><br />
 
         <label for="fdst">Davčna številka:</label>
-        <input type="text" id="fdst" name="fdst" /><br /><br />
+        <input type="text" id="fdst" name="fdst" pattern="[0-9]{8}" required /><br /><br />
 
         <label for="fiban">IBAN:</label>
-        <input type="text" id="fiban" name="fiban" /><br /><br />
+        <input type="text" id="fiban" name="fiban" pattern="^[A-Z]{2}\d{2}[A-Z0-9]{4}\d{7}([A-Z0-9]?){0,16}$" required /><br /><br />
 
         <label for="fnaziv">Naziv podjetja:</label>
-        <input type="text" id="fnaziv" name="fnaziv" /><br /><br />
+        <input type="text" id="fnaziv" name="fnaziv" required /><br /><br />
 
         <label for="fopis">Opis podjetja:</label>
-        <input type="text" id="fopis" name="fopis" /><br /><br />
+        <textarea name="fopis" rows="4" cols="50" required></textarea><br>
+        
+        <input type="submit" value="Submit">
     </form>
 </div>
