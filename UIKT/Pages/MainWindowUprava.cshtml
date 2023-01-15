@@ -1,0 +1,73 @@
+﻿@page
+@model UIKT.Pages.MainWindowModelUprava
+@{
+    ViewData["Title"] = "Prijava podjetja";
+}
+
+<div class="text-center">
+    @*<h4>Vnesite podatke</h4>
+    <form method="post">
+        <label for="fname">Ime:</label>
+        <input type="text" id="fname" name="fname" required/><br /><br />
+
+        <label for="fpass">Priimek:</label>
+        <input type="text" id="fpass" name="fpass" required /><br /><br />
+
+        <label for="femso">EMŠO:</label>
+        <input type="text" id="femso" name="femso" pattern="[0-9]{13}" required /><br /><br />
+
+        <label for="fdst">Davčna številka:</label>
+        <input type="text" id="fdst" name="fdst" pattern="[0-9]{8}" required /><br /><br />
+
+        <label for="fiban">IBAN:</label>
+        <input type="text" id="fiban" name="fiban" pattern="^[A-Z]{2}\d{2}[A-Z0-9]{4}\d{7}([A-Z0-9]?){0,16}$" required /><br /><br />
+
+        <label for="fnaziv">Naziv podjetja:</label>
+        <input type="text" id="fnaziv" name="fnaziv" required /><br /><br />
+
+        <label for="fopis">Opis podjetja:</label>
+        <textarea name="fopis" rows="4" cols="50" required></textarea><br>
+        
+        <input type="submit" value="Submit">
+    </form>*@
+    <table id="myTable" align="center">
+        <tr>
+            <td><strong>Ime</strong></td>
+            <td>@Model.ime</td>
+            <td id ="left">@Model.imeT</td>
+        </tr>
+        <tr>
+            <td><strong>Priimek</strong></td>
+            <td>@Model.priimek</td>
+            <td id="left">@Model.priimekT</td>
+        </tr>
+        <tr>
+            <td><strong>EMŠO</strong></td>
+            <td>@Model.emso</td>
+            <td id="left">@Model.emsoT</td>
+        </tr>
+        <tr>
+            <td><strong>Davčna številka</strong></td>
+            <td>@Model.dst</td>
+            <td id="left">@Model.dstT</td>
+        </tr>
+        <tr>
+            <td><strong>IBAN</strong></td>
+            <td>@Model.iban</td>
+            <td id="left">@Model.ibanT</td>
+        </tr>
+        <tr>
+            <td><strong>Naziv podjetja</strong></td>
+            <td>@Model.naziv</td>
+            <td id="left">@Model.nazivT</td>
+        </tr>
+        <tr>
+            <td><strong>Opis podjetja</strong></td>
+            <td>@Model.opis</td>
+            <td id="left">@Model.opisT</td>
+        </tr>
+    </table>
+
+    <button>Potrdi</button>
+    <button>Zavrni</button>
+</div>

@@ -22,7 +22,12 @@ namespace UIKT.Pages
             var username = Request.Form["fname"];
             var password = Request.Form["fpass"];
 
-            if (username == "admin" && password == "password")
+            if (username == "admin" && password == "admin")
+            {
+                return RedirectToPage("/MainWindowUprava");
+            }
+
+            if (username == "ime" && password == "geslo")
             {
                 //HttpContext.Session.SetString("IsLoggedIn", "true");
                 return RedirectToPage("/MainWindow");
@@ -30,6 +35,7 @@ namespace UIKT.Pages
             else
             {
                 //HttpContext.Session.SetString("IsLoggedIn", "false");
+                
                 return Page();
             }
         }
