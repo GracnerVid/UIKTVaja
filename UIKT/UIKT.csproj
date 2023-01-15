@@ -7,11 +7,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Sporocila_Potrdila\" />
     <Folder Include="Vloge\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="DocX" Version="2.4.0" />
+    <PackageReference Include="Microsoft.Office.Interop.Word" Version="15.0.4797.1004" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.Office.Interop.Word">
+      <HintPath>..\..\..\..\..\..\Windows\assembly\GAC_MSIL\Microsoft.Office.Interop.Word\15.0.0.0__71e9bce111e9429c\Microsoft.Office.Interop.Word.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

@@ -14,8 +14,21 @@ $("#account-link").on("click", function () {
 
 
 
-if (isLoggedIn) {
-    $("#account-link").show();
-} else {
-    $("#account-link").hide();
+function myFunction() {
+    alert("Shranjeno!");
 }
+
+var usrCheckbox = document.getElementById("usr");
+var privacyCheckbox = document.getElementById("privacy");
+var cookiesCheckbox = document.getElementById("cookies");
+
+function gdpr() {
+    var usrChecked = usrCheckbox.checked;
+    var privacyChecked = privacyCheckbox.checked;
+    var cookiesChecked = cookiesCheckbox.checked;
+
+    sessionStorage.setItem("usrChecked", usrChecked);
+    sessionStorage.setItem("privacyChecked", privacyChecked);
+    sessionStorage.setItem("cookiesChecked", cookiesChecked);
+}
+
