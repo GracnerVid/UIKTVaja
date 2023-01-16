@@ -4,11 +4,20 @@
     ViewData["Title"] = "Log in";
 }
 
+<style>
+    .border{
+        width: 500px;
+        height: 550px;
+        padding: 20px;
+
+    }
+</style>
 
 <br />
 
-<div class="border">
-    <h3>Prijava</h3>
+<div class="border border-primary">
+    <h1 style="text-align:center; font-size: 45px" class="display-4">Prijava</h1>
+    <div class="dropdown-divider"></div>
     <br />
     <form method="post">
         <label for="fname">Uporabniško ime:</label>
@@ -16,19 +25,21 @@
         <label for="fpass">Geslo:</label>
         <input type="password" id="fpass" name="fpass" /><br /><br />
 
-        <h4>Osebni podatki</h4>
-        <input type="checkbox" id="usr" name="usr" checked>
-        <label for="usr">Se strinjam z uporabo osebnih podatkov.</label>
+        <div class="dropdown-divider"></div>
 
-        <h4>Zasebnost</h4>
+        <h4 style="font-size: 20px">Osebni podatki</h4>
+        <input type="checkbox" id="usr" name="usr" checked>
+        <label for="usr">Se strinjam z uporabo osebnih podatkov.</label><br /><br />
+
+        <h4 style ="font-size: 20px">Zasebnost</h4>
         <input type="checkbox" id="privacy" name="privacy" checked>
         <label for="privacy">Sem prebral pogoje zasebnosti <a href="https://localhost:7276/Privacy">Pogoji Zasebnosti</a>.</label><br /><br />
 
-        <h4>Piškotki</h4>
+        <h4 style="font-size: 20px">Piškotki</h4>
         <input type="checkbox" id="cookies" name="cookies" checked>
         <label for="cookies">Ta stran za boljše elovanje uporablja piškotke.</label><br /><br />
 
-        <input type="submit" id="loginBtn" onclick="loginBtn_Click" value="Prijava" />
+        <input class="btn btn-primary" type="submit" id="loginBtn" onclick="loginBtn_Click" value="Prijava" />
     </form>
     <label style="color:red" id="feedback">@Model.response</label>
     
