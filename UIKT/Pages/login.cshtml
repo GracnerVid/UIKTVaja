@@ -4,26 +4,31 @@
     ViewData["Title"] = "Log in";
 }
 
+
+<br />
+
 <div class="text-center">
-    <h4>Log in</h4>
+    <h3>Prijava</h3>
+    <br />
     <form method="post">
         <label for="fname">Uporabniško ime:</label>
         <input type="text" id="fname" name="fname"/><br /><br />
         <label for="fpass">Geslo:</label>
         <input type="password" id="fpass" name="fpass" /><br /><br />
-        <input type="submit" id="loginBtn" onclick="loginBtn_Click" value="Prijava" />
 
-        <h3>User Data</h3>
+        <h4>Osebni podatki</h4>
         <input type="checkbox" id="usr" name="usr" checked>
         <label for="usr">Se strinjam z uporabo osebnih podatkov.</label>
 
-        <h3>Privacy Policy</h3>
+        <h4>Zasebnost</h4>
         <input type="checkbox" id="privacy" name="privacy" checked>
         <label for="privacy">Sem prebral pogoje zasebnosti <a href="https://localhost:7276/Privacy">Pogoji Zasebnosti</a>.</label><br /><br />
 
-        <h3>Cookies</h3>
+        <h4>Piškotki</h4>
         <input type="checkbox" id="cookies" name="cookies" checked>
         <label for="cookies">Ta stran za boljše elovanje uporablja piškotke.</label><br /><br />
+
+        <input type="submit" id="loginBtn" onclick="loginBtn_Click" value="Prijava" />
     </form>
     <label style="color:red" id="feedback">@Model.response</label>
     
