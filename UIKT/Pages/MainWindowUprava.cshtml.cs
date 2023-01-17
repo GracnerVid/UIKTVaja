@@ -105,12 +105,12 @@ namespace UIKT.Pages
                     docPotrdi.InsertParagraph("");
                     var paragraphPotrdi = docPotrdi.InsertParagraph();
 
-                    string sporociloPotrdi = $"Spostovani {ime} {priimek}, \n" +
+                    string sporociloPotrdi = $"Spoštovani {ime} {priimek}, \n" +
                         $"\n" +
-                        $"Vase socialno podjetje: \n" +
+                        $"Vaše socialno podjetje: \n" +
                         $"{naziv}," +
                         $" je bilo potrjeno in registrirano.\n" +
-                        $"LP,\n" +
+                        $"Lep pozdrav,\n" +
                         $"Registerski Organ\n";
 
 
@@ -135,11 +135,11 @@ namespace UIKT.Pages
 
                         string sporocilo = $"Spostovani {ime} {priimek}, \n" +
                             $"\n" +
-                            $"Vasa vloga za registracijo novega socialnega podjetja, \n" +
+                            $"Vaša vloga za registracijo novega socialnega podjetja, \n" +
                             $" je bila zavrnjena z razlogom: \n" +
                             $"{zavrnitev}.\n" +
-                            $"Ce zelite lahko ponovno poskusete preko spletnega portala.\n" +
-                            $"LP,\n" +
+                            $"?e želite lahko ponovno poskusite preko spletnega portala.\n" +
+                            $"Lep pozdrav,\n" +
                             $"Registerski Organ\n";
 
                         paragraph.Append(sporocilo).Alignment = Xceed.Document.NET.Alignment.center;

@@ -48,7 +48,7 @@ namespace UIKT.Pages
             else
             {
                 //HttpContext.Session.SetString("IsLoggedIn", "false");
-                response = "nepravilni podatki!";
+                response = "Nepravilni podatki!";
                 return Page();
             }
         }
