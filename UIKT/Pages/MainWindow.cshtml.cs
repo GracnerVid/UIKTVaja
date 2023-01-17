@@ -97,6 +97,7 @@ namespace UIKT.Pages
             var iban = Request.Form["fiban"];
             var naziv = Request.Form["fnaziv"];
             var opis = Request.Form["fopis"];
+            var btn = Request.Form["submit"];
 
             var httpContext = _httpContextAccessor.HttpContext;
             var usrDataRaw = httpContext.Session.GetString("usr");
@@ -131,32 +132,61 @@ namespace UIKT.Pages
             #endregion
 
 
-            if (ime == "" || priimek == "" || emso == "" || davcnast == "" ||
-                iban == "" || naziv == "" || opis == "")
+            switch (btn)
             {
-                //return RedirectToPage("/MainWindow");
-                if (cookies == true)
-                {
-                    HttpContext.Session.SetString("fname", ime);
-                    HttpContext.Session.SetString("fpass", priimek);
-                    HttpContext.Session.SetString("femso", emso);
-                    HttpContext.Session.SetString("fdst", davcnast);
-                    HttpContext.Session.SetString("fiban", iban);
-                    HttpContext.Session.SetString("fnaziv", naziv);
-                    HttpContext.Session.SetString("fopis", opis);
-                }
-                return Page();
+                case "Shrani":
+                    if (cookies == true)
+                    {
+                        HttpContext.Session.SetString("fname", ime);
+                        HttpContext.Session.SetString("fpass", priimek);
+                        HttpContext.Session.SetString("femso", emso);
+                        HttpContext.Session.SetString("fdst", davcnast);
+                        HttpContext.Session.SetString("fiban", iban);
+                        HttpContext.Session.SetString("fnaziv", naziv);
+                        HttpContext.Session.SetString("fopis", opis);
+                    }
+                    return Page();
+
+                case "Pošlji":
+                    Vloga vloga = new Vloga(ime, priimek, emso, davcnast, iban, naziv, opis);
+                    string json = JsonConvert.SerializeObject(vloga);
+                    string fileName = "vloga" + DateTime.Today.ToString("dd-MM-yyyy") + ime + "_" + priimek + ".json";
+                    string folderPath = Path.GetFullPath(@"Vloge");
+                    string filePath = Path.Combine(folderPath, fileName);
+                    System.IO.File.WriteAllText(filePath, json);
+                    return RedirectToPage("/Index");
+
+                default:
+                    break;
             }
-            else
-            {
-                Vloga vloga = new Vloga(ime, priimek, emso, davcnast, iban, naziv, opis);
-                string json = JsonConvert.SerializeObject(vloga);
-                string fileName = "vloga" + DateTime.Today.ToString("dd-MM-yyyy") + ime + "_" + priimek + ".json";
-                string folderPath = Path.GetFullPath(@"Vloge");
-                string filePath = Path.Combine(folderPath, fileName);
-                System.IO.File.WriteAllText(filePath, json);
-                return RedirectToPage("/Index");
-            }
+
+            //if (ime == "" || priimek == "" || emso == "" || davcnast == "" ||
+            //    iban == "" || naziv == "" || opis == "")
+            //{
+            //    //return RedirectToPage("/MainWindow");
+            //    if (cookies == true)
+            //    {
+            //        HttpContext.Session.SetString("fname", ime);
+            //        HttpContext.Session.SetString("fpass", priimek);
+            //        HttpContext.Session.SetString("femso", emso);
+            //        HttpContext.Session.SetString("fdst", davcnast);
+            //        HttpContext.Session.SetString("fiban", iban);
+            //        HttpContext.Session.SetString("fnaziv", naziv);
+            //        HttpContext.Session.SetString("fopis", opis);
+            //    }
+            //    return Page();
+            //}
+            //else
+            //{
+            //    Vloga vloga = new Vloga(ime, priimek, emso, davcnast, iban, naziv, opis);
+            //    string json = JsonConvert.SerializeObject(vloga);
+            //    string fileName = "vloga" + DateTime.Today.ToString("dd-MM-yyyy") + ime + "_" + priimek + ".json";
+            //    string folderPath = Path.GetFullPath(@"Vloge");
+            //    string filePath = Path.Combine(folderPath, fileName);
+            //    System.IO.File.WriteAllText(filePath, json);
+            //    return RedirectToPage("/Index");
+            //}
+            return Page();
         }
     }
 }
