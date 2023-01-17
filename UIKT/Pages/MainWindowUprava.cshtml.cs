@@ -7,6 +7,7 @@ using Xceed.Words.NET;
 using System.Reflection.Metadata;
 using Microsoft.Office.Interop.Word;
 using Microsoft.AspNetCore.Http.Extensions;
+using Microsoft.AspNetCore.Http;
 
 namespace UIKT.Pages
 {
@@ -21,9 +22,21 @@ namespace UIKT.Pages
         public string opis { get; set; }
         public string vlogaime { get; set; }
         public string response { get; set; }
+        public string uporabnik { get; set; }
+
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public MainWindowModelUprava(IHttpContextAccessor httpContextAccessor)
+        {
+            _httpContextAccessor = httpContextAccessor;
+        }
 
         public void OnGet()
         {
+            var httpContext = _httpContextAccessor.HttpContext;
+            uporabnik = httpContext.Session.GetString("uporabnik");
+
+
             string url = PageContext.HttpContext.Request.GetDisplayUrl();
             // prikaz podatkov na strani
             string folderPath = Path.GetFullPath(@"Vloge");
@@ -69,6 +82,13 @@ namespace UIKT.Pages
 
         public async Task<IActionResult> OnPostAsync()
         {
+            var httpContext = _httpContextAccessor.HttpContext;
+            string up = httpContext.Session.GetString("uporabnik");
+            if (up == "Uprava")
+                uporabnik = up;
+            if (up == "RegOrg")
+                uporabnik = "Registerski Organ";
+
             var ime = Request.Form["fname"];
             var priimek = Request.Form["fpriimek"];
             var emso = Request.Form["femso"];
@@ -99,7 +119,7 @@ namespace UIKT.Pages
             {
                 case "Potrdi":
                     string folderPathPotrdi = Path.GetFullPath(@"Sporocila_Potrdila");
-                    string tempfileNamePotrdi = folderPathPotrdi + "\\Potrdilo" + DateTime.Today.ToString("dd-MM-yyyy") + ime + "_" + priimek + ".docx";
+                    string tempfileNamePotrdi = folderPathPotrdi + "\\Potrdilo" + DateTime.Today.ToString("dd-MM-yyyy") + ime + "_" + priimek + "_" + uporabnik + ".docx";
 
                     var docPotrdi = DocX.Create(tempfileNamePotrdi);
                     docPotrdi.InsertParagraph("");
@@ -111,7 +131,7 @@ namespace UIKT.Pages
                         $"{naziv}," +
                         $" je bilo potrjeno in registrirano.\n" +
                         $"Lep pozdrav,\n" +
-                        $"Registerski Organ\n";
+                        $"{uporabnik}\n";
 
 
                     paragraphPotrdi.Append(sporociloPotrdi).Alignment = Xceed.Document.NET.Alignment.center;
@@ -126,7 +146,7 @@ namespace UIKT.Pages
                     else
                     {
                         string folderPath = Path.GetFullPath(@"Sporocila_Potrdila");
-                        string tempfileName = folderPath + "\\Sporocilo" + DateTime.Today.ToString("dd-MM-yyyy") + ime + "_" + priimek + ".docx";
+                        string tempfileName = folderPath + "\\Sporocilo" + DateTime.Today.ToString("dd-MM-yyyy") + ime + "_" + priimek + "_" + uporabnik + ".docx";
                         string fileName = folderPath + "\\Sporocilo" + DateTime.Today.ToString("dd-MM-yyyy") + ".pdf";
 
                         var doc = DocX.Create(tempfileName);
@@ -140,7 +160,7 @@ namespace UIKT.Pages
                             $"{zavrnitev}.\n" +
                             $"?e želite lahko ponovno poskusite preko spletnega portala.\n" +
                             $"Lep pozdrav,\n" +
-                            $"Registerski Organ\n";
+                            $"{uporabnik}\n";
 
                         paragraph.Append(sporocilo).Alignment = Xceed.Document.NET.Alignment.center;
                         doc.SaveAs(tempfileName);

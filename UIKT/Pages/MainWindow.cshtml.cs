@@ -21,6 +21,7 @@ namespace UIKT.Pages
         public bool usrData { get; set; }
         public bool privacy { get; set; }
         public bool cookies { get; set; }
+        public string uporabnik { get; set; }
 
         private readonly IHttpContextAccessor _httpContextAccessor;
 
@@ -63,6 +64,7 @@ namespace UIKT.Pages
             }
             #endregion
 
+            uporabnik = httpContext.Session.GetString("uporabnik");
             if (httpContext != null)
             {
                 if (cookies == true)

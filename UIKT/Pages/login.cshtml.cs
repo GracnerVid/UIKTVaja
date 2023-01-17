@@ -32,8 +32,15 @@ namespace UIKT.Pages
             var privacyRaw = Request.Form["privacy"];
             var cookiesRaw = Request.Form["cookies"];            
 
-            if (username == "admin" && password == "admin")
+            if (username == "Uprava" && password == "Uprava")
             {
+                HttpContext.Session.SetString("uporabnik", username);
+                return RedirectToPage("/MainWindowUprava");
+            }
+
+            if (username == "RegOrg" && password == "RegOrg")
+            {
+                HttpContext.Session.SetString("uporabnik", username);
                 return RedirectToPage("/MainWindowUprava");
             }
 
@@ -43,6 +50,7 @@ namespace UIKT.Pages
 
             if (username == "ime" && password == "geslo")
             {
+                HttpContext.Session.SetString("uporabnik", username);
                 return RedirectToPage("/MainWindow");
             }
             else
